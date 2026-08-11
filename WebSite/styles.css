@@ -231,7 +231,7 @@ main { max-width:1280px; margin:0 auto; padding: 1.5rem 1rem 3rem; }
   font-size:.64rem; font-weight:600; color: var(--text-muted); border:1px solid var(--border);
   padding:.15rem .4rem; border-radius: 6px;
 }
-.card-foot { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:.5rem; pt:.4rem; }
+.card-foot { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding-top: .4rem; }
 .price-wrap { display:flex; flex-direction:column; }
 .price-old { font-size:.72rem; color: var(--text-muted); text-decoration: line-through; }
 .price-now { font-family: var(--font-display); font-size:1.1rem; font-weight:700; color: var(--text); }
