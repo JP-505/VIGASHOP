@@ -1,8 +1,4 @@
-/* =========================================================
-   VigaShop — Design tokens
-   Paleta "cartucho de arcade": tinta casi negra, blanco cálido
-   y dos acentos de cartucho (coral y amarillo), + teal de apoyo.
-   ========================================================= */
+
 :root {
   --bg:            #121218;
   --bg-elevated:   #1B1C24;
@@ -13,10 +9,10 @@
   --text:          #EDEAE3;
   --text-muted:    #9C9DAE;
 
-  --accent:        #FF5A4E; /* coral cartucho */
+  --accent:        #FF5A4E; 
   --accent-dark:   #E14539;
-  --accent-2:      #FFC94A; /* amarillo arcade */
-  --accent-3:      #3ED9C0; /* teal */
+  --accent-2:      #FFC94A; 
+  --accent-3:      #3ED9C0; 
   --danger:        #FF6B6B;
   --success:       #6BCB77;
 
@@ -30,7 +26,7 @@
   --shadow-card: 0 10px 30px rgba(0,0,0,.35);
 }
 
-/* Genre gradients — used as data-genre backgrounds for card art */
+
 [data-genre="Acción"]      { --g1:#3a1420; --g2:#FF5A4E; }
 [data-genre="Aventura"]    { --g1:#12271f; --g2:#3ED9C0; }
 [data-genre="RPG"]         { --g1:#221537; --g2:#9B7BFF; }
@@ -54,12 +50,12 @@ body {
 h1,h2,h3 { font-family: var(--font-display); margin:0; }
 p { margin:0; }
 button { font-family: inherit; cursor:pointer; touch-action: manipulation; }
-input,select,textarea { font-family: inherit; font-size: 16px; /* Evita zoom automático en iOS */ }
+input,select,textarea { font-family: inherit; font-size: 16px; }
 :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
 
 .muted { color: var(--text-muted); font-size: .92rem; }
 
-/* ---------- Buttons ---------- */
+
 .btn {
   border:none; border-radius: 999px; padding: .8rem 1.5rem;
   font-weight: 600; font-size: .95rem; transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
@@ -81,7 +77,7 @@ input,select,textarea { font-family: inherit; font-size: 16px; /* Evita zoom aut
 .link-btn:hover { text-decoration: underline; }
 .link-btn.small { font-size:.82rem; margin-top:.4rem; }
 
-/* ---------- Header ---------- */
+
 .site-header {
   position: sticky; top:0; z-index: 40;
   background: rgba(18,18,24,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -144,7 +140,7 @@ input,select,textarea { font-family: inherit; font-size: 16px; /* Evita zoom aut
 }
 .account-menu button:hover { background: var(--surface-hi); }
 
-/* ---------- Hero ---------- */
+
 .hero { position:relative; overflow:hidden; border-bottom:1px solid var(--border); }
 .hero-inner {
   max-width: 1280px; margin:0 auto; padding: 2.2rem 1rem 1.8rem;
@@ -169,7 +165,7 @@ input,select,textarea { font-family: inherit; font-size: 16px; /* Evita zoom aut
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
 
-/* ---------- Filters ---------- */
+
 .filters-bar { border-bottom:1px solid var(--border); background: var(--bg-elevated); }
 .filters-inner {
   max-width:1280px; margin:0 auto; padding: .85rem 1rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
@@ -182,21 +178,21 @@ input,select,textarea { font-family: inherit; font-size: 16px; /* Evita zoom aut
 }
 .results-count { margin-left:auto; color: var(--text-muted); font-size:.82rem; width: 100%; text-align: right; }
 
-/* ---------- Catalog ---------- */
+
 main { max-width:1280px; margin:0 auto; padding: 1.5rem 1rem 3rem; }
 .section-title { font-size:1.2rem; margin-bottom:1rem; }
 .game-grid {
   display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem;
 }
 
-/* Cartridge card — signature element */
+
 .game-card {
   background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-m);
   overflow:hidden; display:flex; flex-direction:column; position:relative;
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 .game-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: var(--accent-3); }
-.game-card:before { /* cartridge notch */
+.game-card:before { 
   content:""; position:absolute; top:0; left:18px; width:30px; height:12px;
   background: var(--bg); border-radius:0 0 6px 6px; z-index:2;
 }
@@ -244,7 +240,7 @@ main { max-width:1280px; margin:0 auto; padding: 1.5rem 1rem 3rem; }
 
 .empty-state { text-align:center; padding: 2.5rem 1rem; color: var(--text-muted); display:flex; flex-direction:column; gap:1rem; align-items:center; }
 
-/* ---------- Footer ---------- */
+
 .site-footer { background: var(--bg-elevated); border-top:1px solid var(--border); margin-top:2rem; padding-bottom: env(safe-area-inset-bottom); }
 .footer-inner {
   max-width:1280px; margin:0 auto; padding: 2rem 1rem 1.5rem; display:grid; grid-template-columns: 1fr; gap:1.8rem;
@@ -265,7 +261,7 @@ main { max-width:1280px; margin:0 auto; padding: 1.5rem 1rem 3rem; }
 .form-note.error { color: var(--danger); }
 .footer-bottom { text-align:center; color: var(--text-muted); font-size:.78rem; padding: 1rem; border-top:1px solid var(--border); }
 
-/* ---------- Overlay / Drawer / Modal ---------- */
+
 .overlay {
   position:fixed; inset:0; background: rgba(8,8,12,.75); backdrop-filter: blur(4px); z-index:60;
 }
@@ -354,7 +350,7 @@ main { max-width:1280px; margin:0 auto; padding: 1.5rem 1rem 3rem; }
 .product-price-row { display:flex; align-items:center; justify-content: space-between; gap:1rem; flex-wrap: wrap; }
 .product-price-row .price-now { font-size:1.4rem; }
 
-/* ---------- Adaptaciones Móviles Específicas ---------- */
+
 @media (max-width: 640px) {
   .header-inner {
     display: grid;
@@ -370,11 +366,11 @@ main { max-width:1280px; margin:0 auto; padding: 1.5rem 1rem 3rem; }
   .search-wrap { grid-area: search; width: 100%; }
   .main-nav { grid-area: nav; width: 100%; }
 
-  .account-label-text { display: none; } /* Ocultar texto en la cuenta para optimizar espacio */
+  .account-label-text { display: none; }
   .icon-btn { padding: .5rem .7rem; }
   
   .game-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en teléfonos grandes */
+    grid-template-columns: repeat(2, 1fr); 
     gap: .75rem;
   }
   
@@ -383,6 +379,6 @@ main { max-width:1280px; margin:0 auto; padding: 1.5rem 1rem 3rem; }
 
 @media (max-width: 400px) {
   .game-grid {
-    grid-template-columns: 1fr; /* 1 columna en teléfonos pequeños */
+    grid-template-columns: 1fr; 
   }
 }
