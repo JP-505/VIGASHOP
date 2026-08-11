@@ -1,10 +1,8 @@
-/* =========================================================
-   VigaShop — Lógica de la aplicación
-   ========================================================= */
+
 (function () {
   "use strict";
 
-  /* ---------------- Storage helpers ---------------- */
+  
   const store = {
     get(key, fallback) {
       try {
@@ -15,11 +13,11 @@
     set(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
   };
 
-  let cart = store.get("vigashop_cart", []);         // [{id, qty}]
-  let favorites = store.get("vigashop_favs", []);     // [id,...]
-  let users = store.get("vigashop_users", []);        // [{name, email, password}]
-  let session = store.get("vigashop_session", null);  // email or null
-  let purchases = store.get("vigashop_purchases", {}); // { email: [order,...] }
+  let cart = store.get("vigashop_cart", []);         
+  let favorites = store.get("vigashop_favs", []);     
+  let users = store.get("vigashop_users", []);        
+  let session = store.get("vigashop_session", null);  
+  let purchases = store.get("vigashop_purchases", {}); 
 
   const persist = {
     cart: () => store.set("vigashop_cart", cart),
@@ -33,10 +31,10 @@
   const finalPrice = (g) => g.discount > 0 ? g.price * (1 - g.discount / 100) : g.price;
   const findGame = (id) => GAMES.find((g) => g.id === id);
 
-  /* ---------------- App state (filters) ---------------- */
+  /
   const state = { view: "all", search: "", genre: "", sort: "default" };
 
-  /* ---------------- DOM refs ---------------- */
+  
   const $ = (sel) => document.querySelector(sel);
   const gameGrid = $("#gameGrid");
   const emptyState = $("#emptyState");
@@ -53,10 +51,7 @@
   const cartTotalEl = $("#cartTotal");
   const cartCountEl = $("#cartCount");
 
-  /* ============================================================
-     CATÁLOGO — historias: ver, buscar, filtrar, ordenar, detalle,
-     precio, plataformas
-     ============================================================ */
+
   function populateGenres() {
     const genres = [...new Set(GAMES.map((g) => g.genre))].sort();
     genres.forEach((g) => {
@@ -134,7 +129,7 @@
     track.innerHTML = (items.concat(items)).join(""); // duplicado para loop continuo
   }
 
-  /* ---------------- Detalle de producto ---------------- */
+  
   function openProductModal(id) {
     const g = findGame(id);
     if (!g) return;
@@ -167,9 +162,7 @@
     openModal("productModal");
   }
 
-  /* ============================================================
-     FAVORITOS
-     ============================================================ */
+   
   function toggleFavorite(id) {
     if (favorites.includes(id)) favorites = favorites.filter((f) => f !== id);
     else favorites.push(id);
@@ -178,9 +171,7 @@
     if ($("#productModal").classList.contains("open")) openProductModal(id);
   }
 
-  /* ============================================================
-     CARRITO — historias: agregar, eliminar, total, modificar cantidad
-     ============================================================ */
+
   function addToCart(id) {
     const line = cart.find((c) => c.id === id);
     if (line) line.qty += 1;
@@ -252,9 +243,7 @@
 
   function openCart() { openDrawer("cartDrawer"); }
 
-  /* ============================================================
-     MODALES / DRAWER genéricos
-     ============================================================ */
+
   function showOverlay() { overlay.hidden = false; }
   function hideOverlay() { overlay.hidden = true; }
 
@@ -270,9 +259,7 @@
     hideOverlay();
   }
 
-  /* ============================================================
-     CUENTA — historias: registro, login, recuperar contraseña
-     ============================================================ */
+
   function updateAccountUI() {
     const label = $("#accountLabel");
     const menu = $("#accountMenu");
@@ -369,9 +356,7 @@
     $("#accountMenu").hidden = true;
   }
 
-  /* ============================================================
-     PAGO / CHECKOUT / CONFIRMACIÓN / HISTORIAL
-     ============================================================ */
+
   function openCheckout() {
     if (cart.length === 0) return;
     if (!session) {
@@ -438,9 +423,7 @@
       </div>`).join("");
   }
 
-  /* ============================================================
-     SOPORTE / CONTACTO
-     ============================================================ */
+
   function handleContact(e) {
     e.preventDefault();
     const note = $("#contactNote");
@@ -450,9 +433,7 @@
     setTimeout(() => (note.textContent = ""), 3500);
   }
 
-  /* ============================================================
-     EVENTOS
-     ============================================================ */
+
   function init() {
     populateGenres();
     renderTicker();
@@ -470,7 +451,7 @@
       renderGrid();
     });
 
-    // Navegación por vistas
+   
     document.querySelectorAll(".nav-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
         document.querySelectorAll(".nav-tab").forEach((t) => t.classList.remove("active"));
@@ -483,7 +464,7 @@
     $("#heroOffersBtn").addEventListener("click", () => document.querySelector('[data-view="offers"]').click());
     $("#logoBtn").addEventListener("click", () => document.querySelector('[data-view="all"]').click());
 
-    // Delegación: tarjetas del grid
+  
     gameGrid.addEventListener("click", (e) => {
       const detailId = e.target.closest("[data-detail]")?.dataset.detail;
       const addId = e.target.closest("[data-add]")?.dataset.add;
@@ -493,7 +474,7 @@
       else if (favId) toggleFavorite(favId);
     });
 
-    // Delegación dentro del modal de producto (añadir / favorito)
+    
     $("#productModalContent").addEventListener("click", (e) => {
       const addId = e.target.closest("[data-add]")?.dataset.add;
       const favId = e.target.closest("[data-fav]")?.dataset.fav;
@@ -501,7 +482,7 @@
       else if (favId) toggleFavorite(favId);
     });
 
-    // Carrito
+    
     $("#cartBtn").addEventListener("click", openCart);
     cartItemsEl.addEventListener("click", (e) => {
       const qtyBtn = e.target.closest("[data-qty]");
@@ -511,7 +492,7 @@
     });
     $("#checkoutBtn").addEventListener("click", openCheckout);
 
-    // Cuenta
+    
     $("#accountBtn").addEventListener("click", () => {
       const menu = $("#accountMenu");
       menu.hidden = !menu.hidden;
@@ -537,13 +518,13 @@
     $("#loginForm").addEventListener("submit", handleLogin);
     $("#forgotForm").addEventListener("submit", handleForgot);
 
-    // Checkout / confirmación
+    
     $("#confirmPaymentBtn").addEventListener("click", confirmPayment);
 
-    // Contacto
+    
     $("#contactForm").addEventListener("submit", handleContact);
 
-    // Cierre genérico de modales / drawers
+    
     overlay.addEventListener("click", closeAllOverlays);
     document.querySelectorAll("[data-close]").forEach((btn) => {
       btn.addEventListener("click", () => {

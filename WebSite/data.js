@@ -1,6 +1,4 @@
-/* =========================================================
-   VigaShop — Catálogo de videojuegos (datos de demostración)
-   ========================================================= */
+
 const GAMES = [
   {
     id: "g01", title: "Neon Ronin", genre: "Acción", icon: "🗡️",
